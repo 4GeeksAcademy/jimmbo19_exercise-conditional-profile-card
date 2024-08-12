@@ -1,3 +1,4 @@
+import { name } from "file-loader";
 import "../style/index.css";
 
 /**
@@ -29,18 +30,62 @@ function render(variables = {}) {
   let cover = `<div class="cover"><img src="${variables.background}" /></div>`;
   if (variables.includeCover == false) cover = "<div class='cover'></div>";
 
+  let name = variables.name == null ? "Lucy" : variables.name;
+  let lastname = variables.lastName == null ? "Smith" : variables.lastName;
+  let role =
+    variables.role === "Web Developer"
+      ? "Web Developer"
+      : variables.role === "Floor Planner"
+      ? "Floor Planner"
+      : variables.role === "Technical Writer"
+      ? "Technical Writer"
+      : "Web Developer";
+  let city =
+    variables.city === "Miami"
+      ? "Miami"
+      : variables.city === "Munich"
+      ? "Munich"
+      : variables.City === "Caracas"
+      ? "Caracas"
+      : variables.City === "Toronto"
+      ? "Caracas"
+      : "Miami";
+  let country =
+    variables.country === "Germany"
+      ? "Germany"
+      : variables.country === "Canada"
+      ? "Canada"
+      : variables.country === "Venezuela"
+      ? "Venezuela"
+      : "USA";
+
+  let socialMediaPosition = variables.socialMediaPosition || "position-right";
+
+  let twitterLink = variables.twitter
+    ? `https://twitter.com/${variables.twitter}`
+    : "https://twitter.com/4geeksacademy";
+  let githubLink = variables.github
+    ? `https://github.com/${variables.github}`
+    : "https://github.com/4geeksacademy";
+  let linkedinLink = variables.linkedin
+    ? `https://linkedin.com/in/${variables.linkedin}`
+    : "https://linkedin.com/school/4geeksacademy";
+  let instagramLink = variables.instagram
+    ? `https://instagram.com/${variables.instagram}`
+    : "https://instagram.com/4geeksacademy";
+
   // reset the website body with the new html output
   document.querySelector("#widget_content").innerHTML = `<div class="widget">
             ${cover}
           <img src="${variables.avatarURL}" class="photo" />
-          <h1>Lucy Boilett</h1>
-          <h2>Web Developer</h2>
-          <h3>Miami, USA</h3>
-          <ul class="position-right">
-            <li><a href="https://twitter.com/4geeksacademy"><i class="fab fa-twitter"></i></a></li>
-            <li><a href="https://github.com/4geeksacademy"><i class="fab fa-github"></i></a></li>
-            <li><a href="https://linkedin.com/school/4geeksacademy"><i class="fab fa-linkedin"></i></a></li>
-            <li><a href="https://instagram.com/4geeksacademy"><i class="fab fa-instagram"></i></a></li>
+          <h1>${name} ${lastname}</h1>
+          <h2>${role}</h2>
+          <h3>${city}, ${country}</h3>
+          <ul class=${socialMediaPosition}>
+            <li><a href=${twitterLink}><i class="fab fa-twitter"></i></a></li>
+            <li><a href=${githubLink}><i class="fab fa-github"></i></a></li>
+            <li><a href=${linkedinLink}><i class="fab fa-linkedin"></i></a></li>
+            <li><a href="${instagramLink}><i class="fab fa-instagram"></i></a></li>
           </ul>
         </div>
     `;
